@@ -35,6 +35,6 @@ class Staff(models.Model):
         fname = self.firstname
         lname = self.lastname
         if (fname and lname):
-            fullname = lname + ' ' + fname
+            fullname = f'{lname} {fname}'
             return fullname
         return fullname

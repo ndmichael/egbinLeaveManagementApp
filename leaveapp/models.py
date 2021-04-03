@@ -32,8 +32,11 @@ class Leave (models.Model):
     is_approved = models.BooleanField (default=False)
     status = models.CharField(choices=STATUS, default="pending", max_length=15)
 
-    date_approved = models.DateTimeField (default='', null=True, blank=True)
+    date_approved = models.DateTimeField (auto_now_add=True)
     date_created = models.DateTimeField (auto_now_add=True)
+
+    initial_balance = models.IntegerField(default=0)
+    final_balance = models.IntegerField(default=0)
 
     objects = models.Manager()
     leavemanagers = LeaveManager()

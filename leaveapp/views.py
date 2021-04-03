@@ -4,7 +4,8 @@ from .forms import LeaveForm
 from django.contrib import messages
 from leaveapp.models import Leave
 from account.models import Staff
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
+from django.utils import timezone
 import datetime
 
 # Create your views here.
@@ -31,7 +32,7 @@ def RequestLeave (request):
 
 
 def historyList (request):
-    leaves = Leave.objects.all().filter(is_approved=True)
+    leaves = Leave.objects.all().filter(is_approved=True).order_by('-date_approved')
 
     context = {
         'leaves': leaves,
@@ -57,22 +58,23 @@ def managerApproval (request):
     if request.POST.get('action') == 'post':
         id = request.POST.get('leave_id')
         decision = request.POST.get('decision')
-        leave_obj = get_object_or_404(Leave, id=id)
-        staff_obj = get_object_or_404(Staff, user=leave_obj.user)
+        leave = get_object_or_404(Leave, id=id)
+        staff_obj = get_object_or_404(Staff, user=leave.user)
         print("staff obj", staff_obj)
-        days_num = leave_obj
-        leavetype = leave_obj.leavetype
+        days_num = leave
+        leavetype = leave.leavetype
 
         # manager decision
         
         if decision == 'approved' or decision == 'rejected':
-            leave_obj.is_approved = True
-            leave_obj.status = decision
-            leave_obj.date_approved = datetime.date.today()
-            staff_obj.leave_balance_old = staff_obj.leave_balance
-            staff_obj.leave_balance -= int(leave_obj.days_requested)
-            leave_obj.save()
+            leave.is_approved = True
+            leave.status = decision
+            leave.date_approved = timezone.now()
+            leave.initial_balance = staff_obj.leave_balance
+            staff_obj.leave_balance -= int(leave.days_requested)
+            leave.final_balance = staff_obj.leave_balance
+            leave.save()
             staff_obj.save()
 
-        return JsonResponse({'id': id, 'decision': decision, 'staff': staff_obj.leave_balance})
+        return JsonResponse({'id': id, 'decision': decision, })
     return HttpResponse("Error access denied")
