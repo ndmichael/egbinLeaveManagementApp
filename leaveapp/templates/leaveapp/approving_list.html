@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class=" row py-4">
+            <div class="col-12 col-sm-6 d-flex justify-content-lg-around py-4">
+                <a class="btn btn-info" href="{% url 'all_leave' %}">All Leaves</a>
+                <a class=" btn  btn-info" href="{% url 'leave_list_by_category' 'pending' %}">Pending Leaves</a>
+                <a class=" btn  btn-info" href="{% url 'leave_list_by_category' 'approved' %}">Approved Leaves</a>
+                <a class="btn  btn-info" href="{% url 'leave_list_by_category' 'rejected' %}">Rejected Leaves</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Staff Name</th>
+                            <th scope="col">Leave Type</th>
+                            <th scope="col">Request Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for leave in all_leaves %}
+                        <tr>
+                            <td>{{leave.user.staff.getFullName}}</td>
+                            <td>{{leave.leavetype}}</td>
+                            <td>{{leave.date_created}} {{leave.days_requested}}</td>
+                            <!-- <td></td> -->
+                            <td data-name="status">{{leave.status}}</td>
+                            {% if leave.status == 'pending' %}
+                            <td class=" d-flex flex-row justify-content-around fa-bold" data-name="decision_box">
+                                <span class=" btn btn-success btn-sm actionbtn" id="{{leave.id}}" value="approved">
+                                    <i class=" icofont icofont-tick-boxed"></i>
+                                </span>
+                                <span class=" btn btn-danger btn-sm actionbtn" id="{{leave.id}}" value="rejected">
+                                    <i class=" icofont icofont-close-circled"></i>
+                                </span>
+                            </td>
+                            {% else %}
+                            <td>
+
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

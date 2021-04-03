@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EGBIN LEAVE APP</title>
     <link rel="stylesheet" href="{% static 'leaveapp/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'leaveapp/css/icofont/icofont/icofont.min.css' %}" />
 </head>
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -51,9 +52,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'app-home' %}">Home</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>                   
+                        <a class="nav-link" href="{% url 'requestleave' %}">RequestLeave</a>
+                    </li> 
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'history' %}">History</a>
+                    </li>  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Leave
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{% url 'all_leave' %}">All Leaves</a>
+                          <a class="dropdown-item" href="{% url 'leave_list_by_category' 'pending' %}">Pending Leaves</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{% url 'leave_list_by_category' 'rejected' %}">Rejected Leaves</a>
+                        </div>
+                      </li>               
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -106,6 +123,41 @@
 
     <script src="{% static 'leaveapp/js/jquery-3.4.1.min.js' %}"></script>
     <script src="{% static 'leaveapp/js/bootstrap.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".actionbtn").click(function (event) {
+                event.preventDefault()
+                var leave_id = $(this).attr('id');
+                var decision = $(this).attr('value');
+                var stat = $('#' + leave_id).parents('tr').children("td:eq(3)");
+                console.log(stat)
+               
+                $.ajax({
+                    url: '{% url "approval" %}',
+                    type: 'POST',
+                    data: {
+                        'leave_id': leave_id,
+                        'decision': decision, 
+                        'csrfmiddlewaretoken': "{{ csrf_token }}",
+                        'action': 'post'
+                    },
+                    success: function (response) {
+                        $('#' + leave_id).parents('tr').children("td:eq(3)").html(response['decision']);
+                        
+                        $('#' + leave_id).parents('tr').append("<td></td>");
+                        $('#' + leave_id).parents('td').remove();
+
+                        console.log(response['staff'])
+                    },
+                    error: function (rs, e) {
+
+                        console.log(rs.response)
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

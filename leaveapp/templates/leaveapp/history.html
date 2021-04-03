@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<section>   
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Staff Name</th>
+                        <th scope="col">Leave Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col">Approved Date</th>
+                        <th scope="col">Initial Balance</th>
+                        <th scope="col">New Balance</th>
+                
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for leave in leaves %}
+                      <tr>
+                        <td>{{leave.user.staff.getFullName}}</td>
+                        <td>{{leave.leavetype}}</td>
+                        <td>{{leave.status}}</td>
+                        <td>{{leave.date_created}}</td>
+                        <td>{{leave.date_approved}}</td>
+                        <td>{{leave.user.staff.leave_balance_old}}</td>
+                        <td>{{leave.user.staff.leave_balance}}</td>
+                        
+                        
+                      </tr>
+                      {% endfor %}
+                     
+                    </tbody>
+                  </table>
+                        
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
