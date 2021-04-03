@@ -36,7 +36,7 @@
         <div class="container">
             <span>
                 <a class="navbar-brand" href="{% url 'app-home' %}">
-                    <!-- <img src="{% static 'leaveapp/images/Egbin_logo1a.png' %}" style="height: 40px; " alt="Egbin Power" /> -->
+                    <img src="{% static 'leaveapp/images/Egbin_logo1a.png' %}" style="height: 40px; " alt="Egbin Power" />
                 </a>
             </span>
 
@@ -78,7 +78,9 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="" class="nav-link">{{ request.user.username }}</a>
+                        <a href="" class="nav-link"><span class="text-danger">logged In as</span>, 
+                            <b>{{ request.user.username }}</b>
+                        </a>
                     </li>
 
                     <li class="nav-item">
@@ -120,6 +122,15 @@
     {% block content %}
 
     {% endblock %}
+
+    <div class="container">
+        <div class="row bg-light p-4">
+            <div class="col s12 text-center" >
+                EGBIN &copy; copyright, Software Assessment Project <br />
+                developed by Michael Ukeje
+            </div>
+        </div>
+    </div>
 
 
 
