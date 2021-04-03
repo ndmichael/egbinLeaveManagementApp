@@ -27,3 +27,6 @@ class Leave (models.Model):
     leavetype = models.CharField(choices=LEAVE_TYPE, max_length=20, default='SICK', null=True, blank=True)
     is_approved = models.BooleanField (default=False)
     status = models.CharField(choices=STATUS, default="PENDING", max_length=15)
+
+    def __str__(self):
+        return f"{self.leavetype} {self.user}"
