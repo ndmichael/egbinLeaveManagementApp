@@ -38,16 +38,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'app-home' %}">Home</a>
                     </li>
+
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'requestleave' %}">RequestLeave</a>
                     </li>
-                    {% endif %} 
-
-                    {% if user.is_authenticated and user.staff.line_manager_id.isLineManager or user.is_superuser %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'history' %}">History</a>
                     </li>  
+                    {% endif %} 
+
+                    {% if user.is_authenticated and user.staff.line_manager_id.isLineManager or user.is_superuser %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Leave
