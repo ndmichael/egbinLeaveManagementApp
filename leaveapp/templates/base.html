@@ -66,7 +66,8 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="" class="nav-link"><span class="text-danger">logged In as</span>, 
+                        <a href="{% url 'staff-detail' user.id request.user.username %}" class="nav-link"><span class="text-danger">
+                            logged In as</span>, 
                             <b>{{ request.user.username }}</b>
                         </a>
                     </li>
