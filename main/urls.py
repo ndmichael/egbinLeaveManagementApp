@@ -10,4 +10,5 @@ urlpatterns = [
     path('account/login/', CustomLoginView.as_view(template_name="account/login.html"), name="login"),
     path('account/logout/', auth_views.LogoutView.as_view(template_name="account/logout.html"), name="logout"),
     path('', include('leaveapp.urls')),
+    path('api/', include('leaveapp_api.urls', namespace='leaveapp_api')),
 ]
