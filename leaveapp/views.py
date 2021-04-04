@@ -4,7 +4,7 @@ from .forms import LeaveForm
 from django.contrib import messages
 from leaveapp.models import Leave
 from account.models import Staff
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 import datetime
 
@@ -71,12 +71,21 @@ def managerApproval (request):
         # manager decision
         
         if decision == 'approved' or decision == 'rejected':
+            '''
+            check leave approval -> approved, rejected
+            if approved, reduct the requested days from staff balance
+            else initial_balance = final_balance = leave_balance
+            '''
             leave.is_approved = True
             leave.status = decision
             leave.date_approved = timezone.now()
-            leave.initial_balance = staff_obj.leave_balance
-            staff_obj.leave_balance -= int(leave.days_requested)
-            leave.final_balance = staff_obj.leave_balance
+            if decision == 'approved':
+                leave.initial_balance = staff_obj.leave_balance
+                staff_obj.leave_balance -= int(leave.days_requested)
+                leave.final_balance = staff_obj.leave_balance
+            else:
+                leave.initial_balance = staff_obj.leave_balance
+                leave.final_balance = leave.initial_balance
             leave.save()
             staff_obj.save()
 
