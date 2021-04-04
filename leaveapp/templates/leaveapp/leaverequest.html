@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <section>
-        <div class=" container py-4">
+    <section class="py-4">
+        <div class=" container">
             <div class="row  p-2">
                 <div class="col-12 col-sm-5 offset-md-3 p-3 shadow">
                     <form action="" method="POST">
                         {% csrf_token %}
                         <fieldset>
-                            <legend class=" border-bottom mb-5">Request Form</legend>
+                            <legend class=" border-bottom mb-5">Leave Form</legend>
                             {{form|crispy}}
                         </fieldset>
                         
