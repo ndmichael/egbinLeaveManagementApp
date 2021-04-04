@@ -17,11 +17,29 @@ def index (request):
 
 @login_required
 def RequestLeave (request):
+    SICK = 10
+    ANNUAL = 14
+    COMPASSION = 3
+    EXAM = 5
+    balance = request.user.staff.leave_balance
 
     if request.method == 'POST':
-        # if request.user.staff.balance < 
+        
         form = LeaveForm(request.POST)
+
         if form.is_valid():
+            '''
+                check form validation
+                making sure user requested leave not more than leave balance
+            '''
+            enddate = form.cleaned_data.get('enddate')
+            startdate= form.cleaned_data.get('startdate')
+            diff = enddate - startdate
+            days_requested = diff.days
+            if balance < days_requested:
+                messages.warning(request, f'Your Leave balance is not enough, balance: {balance},  days requested: {days_requested}')
+                return render(request, 'leaveapp/leaverequest.html', {'form':form})
+
             leave_form = form.save(commit=False)
             leave_form.user = request.user
             leave_form.save()
@@ -55,10 +73,7 @@ def approvalList (request, status=None):
 
 
 def managerApproval (request):
-    SICK = 10
-    ANNUAL = 14
-    COMPASSION = 3
-    EXAM = 5
+    
     if request.POST.get('action') == 'post':
         id = request.POST.get('leave_id')
         decision = request.POST.get('decision')
