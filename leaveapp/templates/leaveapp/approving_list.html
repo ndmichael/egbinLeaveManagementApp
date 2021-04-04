@@ -6,7 +6,7 @@
 <section>
     <div class="container">
         <div class=" row py-4">
-            <div class="col-12 col-sm-6 d-flex justify-content-lg-around py-4">
+            <div class="col-12 col-sm-6 d-flex justify-content-around py-4">
                 <a class="btn btn-info" href="{% url 'all_leave' %}">All Leaves</a>
                 <a class=" btn  btn-info" href="{% url 'leave_list_by_category' 'pending' %}">Pending Leaves</a>
                 <a class=" btn  btn-info" href="{% url 'leave_list_by_category' 'approved' %}">Approved Leaves</a>
@@ -16,8 +16,8 @@
         <div class="row">
             <div class="col-12">
                 
-                <table class="table table-striped">
-                    <thead>
+                <table class="table table-striped table-responsive-xl ">
+                    <thead class="text-danger">
                         <tr>
                             <th scope="col">Staff Name</th>
                             <th scope="col">Leave Type</th>
@@ -31,9 +31,16 @@
                         <tr>
                             <td>{{leave.user.staff.getFullName}}</td>
                             <td>{{leave.leavetype}}</td>
-                            <td>{{leave.date_created}} {{leave.days_requested}}</td>
+                            <td>{{leave.date_created}}</td>
                             <!-- <td></td> -->
+                            {% if leave.status == 'pending' %}
                             <td data-name="status">{{leave.status}}</td>
+                            {% elif leave.status == 'approved' %}
+                            <td data-name="status" class="text-success">{{leave.status}}</td>
+                            {% else %}
+                            <td data-name="status" class="text-danger">{{leave.status}}</td>
+                            {% endif %}
+
                             {% if leave.status == 'pending' %}
                             <td class=" d-flex flex-row justify-content-around fa-bold" data-name="decision_box">
                                 <span class=" btn btn-success btn-sm actionbtn" id="{{leave.id}}" value="approved">

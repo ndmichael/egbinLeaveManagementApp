@@ -9,14 +9,14 @@
                     <form action="" method="POST">
                         {% csrf_token %}
                         <fieldset>
-                            <legend class=" border-bottom mb-3">Sign In</legend>
+                            <legend class=" border-bottom mb-5">Request Form</legend>
                             {{form|crispy}}
                         </fieldset>
                         
                         
                         <div class=" form-group">
                             <button class="btn btn-outline-success">
-                                Send Request Now
+                                Make Request Now
                             </button>
                         </div>
                     </form>

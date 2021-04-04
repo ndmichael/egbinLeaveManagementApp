@@ -1,13 +1,35 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block content %}
 
-    <section>   
+    <section class="my-5">   
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h5>Hello World Index Page</h5>
+                <div class="col-6">
+                    <div class="py-5">
+                        <p class=" text-muted">This app is for staff only</p>
+                        <h1>Egbin Leave Management WebApp</h1>
+                        <p class="pb-5 pt-4">
+                            I am glad to be shortlisted for this challenge. 
+                            Please reference the how to use page.
+                            Only admin and Line Managers can manage leave request <br />
+                            Sign In with your staff Id and Password 
+                        </p>
+                        <a href="{% url 'login' %}">
+                            <button class="btn btn-outline-danger btn-lg" style="border-radius: 50px; border: 2px solid orangered;
+                            font-size: 16px; font-weight: 700;">
+                                LOGIN NOW
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="shadow-sm">
+                        <img src="{% static 'leaveapp/images/Egbin-Operation.jpg' %}" class=" img-fluid shadow d-block "  alt="Egbin Power" />
+                    </div>
                 </div>
             </div>
         </div>

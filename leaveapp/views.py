@@ -10,11 +10,12 @@ import datetime
 
 # Create your views here.
 
-@login_required
+
 def index (request):
     return render(request, 'leaveapp/index.html')
 
 
+@login_required
 def RequestLeave (request):
 
     if request.method == 'POST':
@@ -31,6 +32,7 @@ def RequestLeave (request):
     return render(request, 'leaveapp/leaverequest.html', {'form':form})
 
 
+@login_required
 def historyList (request):
     leaves = Leave.objects.all().filter(is_approved=True).order_by('-date_approved')
 
@@ -41,6 +43,7 @@ def historyList (request):
     return render(request, 'leaveapp/history.html', context)
 
 
+@login_required
 def approvalList (request, status=None):
     if status:
         all_leaves = Leave.objects.all().filter(status=status)
