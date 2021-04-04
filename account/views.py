@@ -1,6 +1,12 @@
 from django.shortcuts import render
 
-# Create your views here.
+from django.contrib.auth.views import LoginView
 
-def login (request):
-    return render(request, 'account/login.html')
+from .forms import CustomAuthenticationForm
+
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+
+
+

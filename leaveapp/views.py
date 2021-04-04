@@ -19,6 +19,7 @@ def index (request):
 def RequestLeave (request):
 
     if request.method == 'POST':
+        # if request.user.staff.balance < 
         form = LeaveForm(request.POST)
         if form.is_valid():
             leave_form = form.save(commit=False)

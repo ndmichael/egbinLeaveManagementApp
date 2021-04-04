@@ -46,6 +46,7 @@ class Leave (models.Model):
         diff = self.enddate - self.startdate
         return f"{diff.days}"
 
+
     class Meta:
         ordering = ('-date_created',)
 
