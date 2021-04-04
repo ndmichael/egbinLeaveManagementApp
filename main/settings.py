@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ip_(*mm*wiydqtss3we2d48&a@!$net1#&@8kw7w1+wo#-5uhr'
+# SECRET_KEY = 'ip_(*mm*wiydqtss3we2d48&a@!$net1#&@8kw7w1+wo#-5uhr'
+
+SECRET_KEY = os.environ.get('SECRET_KEY_EGBINAPP')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ukejegbinapp.herokuapp.com']
 
 
 # Application definition
@@ -144,3 +147,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'app-home'
 LOGIN_URL = 'login'
+
+
+django_heroku.settings(locals())
