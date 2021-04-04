@@ -27,6 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% if all_leaves %}
                         {% for leave in all_leaves %}
                         <tr>
                             <td>{{leave.user.staff.getFullName}}</td>
@@ -57,7 +58,9 @@
                             {% endif %}
                         </tr>
                         {% endfor %}
-
+                        {% else %}
+                            <h5>Empty List</h5>
+                        {% endif %}
                     </tbody>
                 </table>
             </div>
