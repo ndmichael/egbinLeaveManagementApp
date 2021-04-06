@@ -72,6 +72,10 @@ def approvalList (request, status=None):
     return render(request, 'leaveapp/approving_list.html', {'all_leaves':all_leaves})
 
 
+def howToUse (request):
+    return render(request, 'leaveapp/how_to_use.html')
+
+
 def managerApproval (request):
     
     if request.POST.get('action') == 'post':

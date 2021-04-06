@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    <section class="py-4 spacer">   
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <h4>This application is only for eGbin software assessment test.</h4>
+                    <p>Staff only, request leave app.</p>
+                    <h5>Admin Link</h5>
+                    <p>https://ukejegbinapp.herokuapp.com/admin/</p>
+                    <ul>
+                        <li>
+                            <p>the username acts as staff id.</p>
+                            <p>Login in with your staff ID and password.</p>
+                        </li>
+
+                        <li>
+                            <p>A user can either be a line manager or not.</p>
+                        </li>
+                        <li>
+                            <p>Only Line Managers and admin can access and manage leave request</p>
+                        </li>
+
+                        <li>
+                            SICK LEAVE: 10days.
+                            EXAM LEAVE: 5days.
+                            ANNUAL LEAVE: 20DAYS.
+                        </li>
+                    </ul>
+                </div>
+                <p class=" text-muted">password for all staff is 'testing321'</p>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
