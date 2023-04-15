@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import django_heroku
 from pathlib import Path
+import environ
+
+# Initialise environment 
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ip_(*mm*wiydqtss3we2d48&a@!$net1#&@8kw7w1+wo#-5uhr'
+# SECRET_KEY = 'ip_(*mm*wiydqtss3we2d48&a@!$net1#&@8kw7w1+wo#-5uhr'
 
-# SECRET_KEY = os.environ.get('SECRET_KEY_EGBINAPP')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,9 +95,9 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'egbinleaveapp_db',
-        'USER': 'postgres' ,
-        'PASSWORD': 'daliMIKE0417' ,
+        'NAME': env('NAME'),
+        'USER': env('USER') ,
+        'PASSWORD': env('PASSWORD') ,
         'HOST': 'localhost',
         'PORT': '5432',
     }
