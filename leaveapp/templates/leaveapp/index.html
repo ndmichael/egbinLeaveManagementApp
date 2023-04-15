@@ -1,41 +1,35 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
-
-{% block content %}
-
-    <section class="py-4 spacer">   
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-6">
-                    <div class="py-5">
-                        <p class=" text-muted">This app is for Egbin staff use only.</p>
-                        <h1>Egbin Leave Management WebApp</h1>
-                        <p class="pb-5 pt-4">
-                            I am glad to be shortlisted for this challenge. 
-                            Please reference the how to use page.
-                            Only admin and Line Managers can manage leave request <br />
-                            Sign In with your staff Id and Password <br /><br />
-                            <b class=" pr-2">ADMIN URL LINK</b>https://ukejegbinapp.herokuapp.com/admin/
-                        </p>
-                        {% if not user.is_authenticated %}
-                        <a href="{% url 'login' %}">
-                            <button class="btn btn-outline-danger btn-lg" style="border-radius: 50px; border: 2px solid orangered;
+<section class="py-4 spacer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="py-5">
+                    <p class=" text-muted">This app is for Egbin staff use only.</p>
+                    <h1>Egbin Leave Management WebApp</h1>
+                    <p class="pb-5 pt-4">
+                        I am glad to be shortlisted for this challenge. Please reference the how to use page. Only admin and Line Managers can manage leave request <br /> Sign In with your staff Id and Password
+                        <br /><br />
+                        <b class=" pr-2">ADMIN URL LINK</b>https://ukejegbinapp.herokuapp.com/admin/
+                    </p>
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}">
+                        <button class="btn btn-outline-danger btn-lg" style="border-radius: 50px; border: 2px solid orangered;
                             font-size: 16px; font-weight: 700;">
-                                LOGIN NOW
-                            </button>
-                        </a>
-                        {% endif %}
-                    </div>
+                            LOGIN NOW
+                        </button>
+                    </a>
+                    {% endif %}
                 </div>
+            </div>
 
-                <div class="col-12 col-sm-6">
-                    <div class="shadow-sm">
-                        <img src="{% static 'leaveapp/images/Egbin-Operation.jpg' %}" class=" img-fluid shadow d-block rounded "  alt="Egbin Power" />
-                    </div>
+            <div class="col-12 col-sm-6">
+                <div class="shadow-sm">
+                    <img src="{% static 'leaveapp/images/Egbin-Operation.jpg' %}" class=" img-fluid shadow d-block rounded " alt="Egbin Power" />
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 {% endblock content %}
