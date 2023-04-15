@@ -1,2 +1,2 @@
 # egbinLeaveManagementApp
-Software Assessment
+Leave Management Application For EGBIN power plant staffs.
