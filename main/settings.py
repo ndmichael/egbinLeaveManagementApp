@@ -95,6 +95,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
+        
         # 'NAME': env('NAME'),
         # 'USER': env('USER') ,
         # 'PASSWORD': env('PASSWORD') ,
@@ -161,7 +162,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'app-home'
+LOGIN_REDIRECT_URL = 'staff-detail'
 LOGIN_URL = 'login'
 
 
