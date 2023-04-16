@@ -76,6 +76,7 @@ def howToUse (request):
     return render(request, 'leaveapp/how_to_use.html')
 
 
+@login_required
 def managerApproval (request):
     
     if request.POST.get('action') == 'post':
