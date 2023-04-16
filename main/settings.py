@@ -101,11 +101,17 @@ DATABASES = {
         # 'HOST': 'localhost',
         # 'PORT': '5432',
 
-        'NAME': env('PGDATABASE'),
-        'USER': env('PGUSER') ,
-        'PASSWORD': env('PGPASSWORD') ,
-        'HOST': env('PGHOST'),
-        'PORT': env('PGPORT'),
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'lqZSFGAOryw9fYRpu4kT',
+        'HOST': 'containers-us-west-9.railway.app',
+        'PORT': '6831',
+
+        # 'NAME': env('PGDATABASE'),
+        # 'USER': env('PGUSER') ,
+        # 'PASSWORD': env('PGPASSWORD') ,
+        # 'HOST': env('PGHOST'),
+        # 'PORT': env('PGPORT'),
 
     }
 }
