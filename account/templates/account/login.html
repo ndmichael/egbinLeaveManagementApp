@@ -1,26 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <section>
+    <section class="bg-light">
         <div class=" container my-5">
             <div class="row">
-                <div class="col-12 col-sm-5 offset-3 p-3 shadow">
+                <div class="col-12 col-sm-5 offset-sm-1 p-5 rounded-lg shadow-sm bg-white">
+                    <p class=" text-muted">This app is for Egbin staff use only.</p>
                     <form action="" method="POST">
                         {% csrf_token %}
                         <fieldset>
-                            <legend class=" border-bottom mb-3">Sign In</legend>
+                            <h3 class="mb-3">LOGIN INTO YOUR ACCOUNT</h3>
                             {{form|crispy}}
                         </fieldset>
                         
                         
                         <div class=" form-group">
-                            <button class="btn btn-outline-danger" style="border-radius: 50px; border: 2px solid orangered;
+                            <button class="btn btn-danger btn-lg col-12" style="border-radius: 50px; border: 2px solid orangered;
                             font-size: 16px; font-weight: 700;">
-                                Log In
+                                LOG IN
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-12 col-sm-5 p-0 m-0">
+                    <img src="{% static 'leaveapp/images/Egbin-Operation.jpg' %}" class=" img-fluid d-block shadow-sm rounded-lg w-100 " style="height: 400px;" alt="Egbin Power" />
                 </div>
             </div>
         </div>
